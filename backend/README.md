@@ -5,7 +5,7 @@ To run locally, do the usual:
 
 #. Install dependencies::
 
-    pip3 install -r requirements/dev.txt
+    pip3 install -r requirements.txt
 
 #. Create databases::
 
