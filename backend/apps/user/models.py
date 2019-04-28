@@ -1,6 +1,5 @@
 from __future__ import unicode_literals
 from django.db import models
-
 from backend.functions.make_id import *
 
 class User(models.Model):
@@ -12,3 +11,6 @@ class User(models.Model):
     password = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
+    def _str_(self):
+        return self.username
