@@ -1,3 +1,3 @@
-from .get import *
+from .login import *
+from .registration import *
 from .getall import *
-from .post import *
