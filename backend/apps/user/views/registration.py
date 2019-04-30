@@ -5,7 +5,7 @@ from django.http import JsonResponse
 import bcrypt
 from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
-
+import json
 @csrf_exempt
 def registration(request):
     if request.method == "POST":
@@ -16,6 +16,6 @@ def registration(request):
            request.POST['email'] :
             hash1 = bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt())
             user_new = User.objects.create(name=request.POST['name'], username=request.POST['username'], password=hash1, email=request.POST['email'])
-            data = serializers.serialize('json', [User.objects.get(id=user_new.id)])
-            return JsonResponse({'success': True, 'data': data})
-    return JsonResponse({ 'success': False, 'data': 'Nothing'})
+            data = serializers.serialize('xml', [User.objects.get(id=user_new.id)], ensure_ascii=False)[1:-1]
+            return HttpResponse(json.dumps({'data':data, 'success': True}), content_type='application/json')
+        return HttpResponse(json.dumps({'success': False}), content_type='application/json')
