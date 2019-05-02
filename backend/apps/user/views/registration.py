@@ -16,6 +16,6 @@ def registration(request):
            request.POST['email'] :
             hash1 = bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt())
             user_new = User.objects.create(name=request.POST['name'], username=request.POST['username'], password=hash1, email=request.POST['email'])
-            data = serializers.serialize('xml', [User.objects.get(id=user_new.id)], ensure_ascii=False)[1:-1]
+            data = serializers.serialize('json', [User.objects.get(id=user_new.id)], ensure_ascii=False)[1:-1]
             return HttpResponse(json.dumps({'data':data, 'success': True}), content_type='application/json')
         return HttpResponse(json.dumps({'success': False}), content_type='application/json')
