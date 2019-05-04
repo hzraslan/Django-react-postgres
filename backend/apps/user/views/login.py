@@ -6,19 +6,21 @@ from django.core import serializers
 import json
 from jose import jws
 from django.http import HttpResponse
-import datetime
 from django.contrib.auth import authenticate
 from django.views.decorators.csrf import csrf_exempt
+from django.core import serializers
 @csrf_exempt
 def login(request):
+    # User.objects.all().delete()
+    # data = serializers.serialize('json', User.objects.all(), ensure_ascii=False)
+    # return HttpResponse(data, content_type="application/json")
     username = request.POST['username']
     password = request.POST['password']
     email = request.POST['email']
-    user = authenticate(username=username, password=password)
-    print(user)
+    user = authenticate(request, email=email, password=password)
     if user: 
-        expiry = datetime.date.today() + timedelta(days=50)
-        token = jws.sign({'username': user.username, 'expiry':expiry}, 'seKre8',  algorithm='HS256')
-        return HttpResponse(json.dumps({'token':token}), content_type='application/json')
+        token = jws.sign({'username': user.email}, 'pythonforum',  algorithm='HS256')
+        print(token)
+        return HttpResponse(json.dumps({'token':token, 'success': True}), content_type='application/json')
     else:
         return HttpResponse(json.dumps({'success': False}), content_type='application/json')
