@@ -7,7 +7,6 @@ class BasicCustomBackend(object):
         try:
             user = User.objects.get(email=email) 
             user_password = user.password
-            print(user.email, email)
             if check_password(password,user_password):
                 return user
             else:
