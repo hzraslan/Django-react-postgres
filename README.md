@@ -1,5 +1,5 @@
 #Django-React
-    Django backend with postgresql, costum-auth with jwt token, Frontend react
+    Django backend with postgresql, custom-auth with jwt token, Frontend react
  ``` bash
    # install frontend
         cd frontend  && npm install
