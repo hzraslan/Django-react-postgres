@@ -7,7 +7,7 @@ future==0.17.1
 psycopg2==2.8.1
 pyasn1==0.4.5
 pycparser==2.19
-PyJWT==1.7.1
+PyJWT==2.4.0
 pytz==2018.9
 rsa==4.1
 six==1.12.0
