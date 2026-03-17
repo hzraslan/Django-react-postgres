@@ -5,7 +5,7 @@ django-webpack-loader==0.6.0
 ecdsa==0.13.3
 future==0.18.3
 psycopg2==2.8.1
-pyasn1==0.4.5
+pyasn1==0.6.3
 pycparser==2.19
 PyJWT==2.4.0
 pytz==2018.9
